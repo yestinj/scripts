@@ -1,6 +1,11 @@
 #!/bin/sh
+if [ $# -eq 0 ]; then
+  echo "Usage: ./show_shorter.sh [TARGET_DIRECTORY] [DESTINATION_DIRECTORY]"
+  exit 1
+fi
+
 TARGET_DIR=$1
-TV_SHOW_DIR_PATH="/Users/yestin/Downloads/tvshows"
+TV_SHOW_DIR_PATH=$2
 #for path in $( find $TARGET_DIR -iname '*.mkv' | tr ' ' . );
 #IFS=$'\n'; for path in $( find $TARGET_DIR -iname '*.mkv' );
 # Iterate over each tv shows found, we assume no spaces in the show name. TODO: Handle if there is.
