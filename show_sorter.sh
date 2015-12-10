@@ -3,18 +3,17 @@ if [ $# -eq 0 ]; then
   echo "Usage: ./show_shorter.sh [TARGET_DIRECTORY] [DESTINATION_DIRECTORY]"
   exit 1
 fi
-
 TARGET_DIR=$1
 TV_SHOW_DIR_PATH=$2
-#for path in $( find $TARGET_DIR -iname '*.mkv' | tr ' ' . );
-#IFS=$'\n'; for path in $( find $TARGET_DIR -iname '*.mkv' );
-# Iterate over each tv shows found, we assume no spaces in the show name. TODO: Handle if there is.
+# Iterate over each tv shows found, we assume no spaces in the show name.
+# TODO: Handle if there is.
 for path in $( find $TARGET_DIR -iname '*.mkv' | tr ' ' . );
 do
   #echo Path is: $path
   # If it's anime, this check works for now..
   if [[ $path == *HorribleSubs* ]]; then
-    echo Detected anime in path, continuing to next file... # TODO: Add proper sorting logic for anime >_<
+    # TODO: Add proper sorting logic for anime >_<
+    echo Detected anime in path, continuing to next file... 
     continue
   fi  
   # Initialise these appropriately for population below, and use even further below.
@@ -31,14 +30,14 @@ do
     fi
     # If the show name is not empty, then handle it differently.
     if [ -n "$showname" ]; then
-      # If word starts with an S check if it's the season string. TODO: Add handling for 9x12 style season numbers
+      # If word starts with an S check if it's the season string.
       # If the word looks like the 9x1 style of episode numbering
       #if [[ $word =~ '[1-9][0-9]{0,2}x[0-9]+' ]]; then
         #echo Caught something of the weird episode number form: $word
         # strip out just the season number
         #seasonnum=`echo $word | cut -d"x" -f1`      
       if [[ ${word:0:1} == [0-9] ]]; then
-        # If the word has more than 3 or more characters, and the next one is an x
+        # If the word has 3 or more characters, and the next one is an x
         if [[ ${#word} -gt 2 ]] && [[ ${word:1:1} == x ]]; then
           seasonnum=${word:0:1}
           break
@@ -53,8 +52,8 @@ do
           if [[ $TMP == [0-9]* ]]; then
 	          seasonnum="$seasonnum${TMP:0:1}"
 	        fi
-          # Assume no more than two digit season numbers... TODO: Add something to loop / recurse to allow for more.
-          #echo "Season number $seasonnum"
+          # Assume no more than two digit season numbers...
+          # TODO: Add something to loop / recurse to allow for more.
 	        break # Break here, found the full season number, no need to continue parsing words in the path.
 	      else
 	        # If this word is not the start of a season string, simply concat word to showname
