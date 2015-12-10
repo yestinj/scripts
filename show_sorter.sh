@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ $# -eq 0 ]; then
   echo "Usage: ./show_shorter.sh [TARGET_DIRECTORY] [DESTINATION_DIRECTORY]"
   exit 1
