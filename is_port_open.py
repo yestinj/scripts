@@ -16,4 +16,4 @@ def is_open(ip, port):
 
 
 if __name__ == '__main__':
-    print(is_open('172.29.21.98', sys.argv[1]))
+    print(is_open(sys.argv[1], sys.argv[2]))
