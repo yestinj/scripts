@@ -1,3 +1,3 @@
 # scripts
 
-Hi
+A collection of useful scripts.
